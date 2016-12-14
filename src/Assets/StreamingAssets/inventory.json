@@ -1,0 +1,40 @@
+{
+	"items": [
+		{
+			"id": 2432,
+			"name": "Peacebloom",
+			"thirst": 2,
+			"rarity": "common"
+		},
+		{
+			"id": 123,
+			"name": "Firebloom",
+			"thirst": 8,
+			"rarity": "rare"
+		},
+		{
+			"id": 5235,
+			"name": "Black Lotus",
+			"thirst": 5,
+			"rarity": "epic"
+		},
+		{
+			"id": 412,
+			"name": "Frost Lotus",
+			"thirst": 2,
+			"rarity": "epic"
+		},
+		{
+			"id": 1572,
+			"name": "Dreamleaf",
+			"thirst": 4,
+			"rarity": "rare"
+		},
+		{
+			"id": 712,
+			"name": "Stormvine",
+			"thirst": 7,
+			"rarity": "legendary"
+		}
+	]
+}

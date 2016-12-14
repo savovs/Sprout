@@ -1,0 +1,4 @@
+sceneSetups:
+- path: Assets/Day-Night Cycle/Scenes/DayNight.unity
+  isLoaded: 1
+  isActive: 1
