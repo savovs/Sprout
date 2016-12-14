@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/Day-Night Cycle/Scenes/DayNight.unity
+- path: Assets/Day-Night Cycle/Scenes/MainScene.unity
   isLoaded: 1
   isActive: 1
