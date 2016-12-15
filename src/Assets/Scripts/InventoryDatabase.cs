@@ -20,7 +20,7 @@ public class InventoryDatabase : MonoBehaviour {
 	public Item fetchItemByID(int id) {
 		foreach(Item item in inventory)	{
 			if(item.ID == id) {
-				Debug.Log("Item found: " + item.Name);
+				// Debug.Log("Item found: " + item.Name);
 				return item;
 			} 
 		}
