@@ -2,11 +2,14 @@
 using System.Collections;
 
 public class Fruit : MonoBehaviour {
-	private AudioSource eatAudio;
+	PlayerHealth playerHealth;
+
+	void Awake() {
+		playerHealth = GameObject.Find("FirstPersonCharacter").GetComponent<PlayerHealth>();
+	}
+
 	public void eat() {
-		if (eatAudio != null) {
-			eatAudio.Play();
-		}
+		playerHealth.restoreHealth(1);
 		gameObject.SetActive(false);
 	}
 }
