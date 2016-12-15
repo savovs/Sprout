@@ -22,6 +22,7 @@ public class RayCast : MonoBehaviour {
 		if (Physics.Raycast(rayOrigin, fpCamera.transform.forward, out hit, selectRange)) {
 			Selectable selectable = hit.collider.GetComponent<Selectable>();
 			Fruit fruit = hit.collider.GetComponent<Fruit>();
+			Plant plant = hit.collider.GetComponent<Plant>();
 
 			if (selectable) {
 				// Add outline material on hover
@@ -30,9 +31,8 @@ public class RayCast : MonoBehaviour {
 
 			if (Input.GetMouseButtonDown(0)) {
 				// If there is a selectable in the traced object, damage it
-				if (selectable && !fruit) {
-					selectable.damage(1);
-					playerHealth.damagePlayer(1);
+				if (selectable && plant) {
+					plant.grow();
 				}
 
 				// Add force to wiggle it a bit

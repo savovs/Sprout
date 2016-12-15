@@ -19,7 +19,7 @@ public class PlayerHealth : MonoBehaviour {
 
 	}
 
-	public void damagePlayer(int amount) {
+	public void damage(int amount) {
 		currentHealth -= amount;
 		healthText.text = currentHealth.ToString();
 		if(currentHealth <= 0) {

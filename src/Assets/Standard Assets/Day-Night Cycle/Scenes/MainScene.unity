@@ -344,8 +344,9 @@ GameObject:
   - 23: {fileID: 612285930}
   - 54: {fileID: 612285933}
   - 114: {fileID: 612285934}
+  - 114: {fileID: 612285935}
   m_Layer: 0
-  m_Name: Box
+  m_Name: Plant
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -439,6 +440,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   outline: {fileID: 2100000, guid: a966615cbcdae3a4a920b6e44ab59c9c, type: 2}
+--- !u!114 &612285935
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 612285928}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb09303bb0de44a4ca35b6d18159bd86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   currentHealth: 3
 --- !u!1001 &919297302
 Prefab:
@@ -1207,7 +1219,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   outline: {fileID: 0}
-  currentHealth: 3
 --- !u!1 &2110477336
 GameObject:
   m_ObjectHideFlags: 0
