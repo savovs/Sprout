@@ -21,39 +21,31 @@ public class Inventory : MonoBehaviour {
 	void Update() {
 		// Select an item in the inventory by number 1 to 5
 		if (Input.GetKeyDown(KeyCode.Alpha1) && inventory.Count > 0) {
-			selectedSeed = inventory[0];
-			selectedSeedIndex = 0;
-			hasSelectedSeed = true;
+			selectItem(0);
 		}
 
 		if(Input.GetKeyDown(KeyCode.Alpha2) && inventory.Count > 1) {
-			selectedSeed = inventory[1];
-			selectedSeedIndex = 1;
-			hasSelectedSeed = true;
+			selectItem(1);
 		}
 
 		if(Input.GetKeyDown(KeyCode.Alpha3) && inventory.Count > 2) {
-			selectedSeed = inventory[2];
-			selectedSeedIndex = 2;
-			hasSelectedSeed = true;
+			selectItem(2);
 		}
 
 		if(Input.GetKeyDown(KeyCode.Alpha4) && inventory.Count > 3) {
-			selectedSeed = inventory[3];
-			selectedSeedIndex = 3;
-			hasSelectedSeed = true;
+			selectItem(3);
 		}
 
 		if(Input.GetKeyDown(KeyCode.Alpha5) && inventory.Count > 4) {
-			selectedSeed = inventory[4];
-			selectedSeedIndex = 4;
-			hasSelectedSeed = true;
+			selectItem(4);
 		}
 	}
 	
 	public void AddItem(Seed item) {
+		Debug.Log("Added a " + item.Name + "to inventory.");
 		inventory.Add(item);
 	}
+
 
 	public void removeItemByIndex(int i) {
 		inventory.RemoveAt(i);
@@ -71,5 +63,12 @@ public class Inventory : MonoBehaviour {
 		selectedSeed = null;
 		selectedSeedIndex = -1;
 		hasSelectedSeed = false;
+	}
+
+	void selectItem(int index) {
+		Debug.Log("Selected a " + inventory[index].Name + " at inventory slot " + index);
+		selectedSeed = inventory[index];
+		selectedSeedIndex = index;
+		hasSelectedSeed = true;
 	}
 }

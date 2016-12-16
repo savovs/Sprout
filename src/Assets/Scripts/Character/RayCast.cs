@@ -61,8 +61,8 @@ public class RayCast : MonoBehaviour {
 					inventory = gameObject.GetComponent<Inventory>();
 
 					if(inventory.hasSelectedSeed) {
-						GameObject foundPrefab = inventory.plantPrefabs.Find(item => item.name == inventory.selectedSeed.Name);
-						Debug.Log(foundPrefab);
+						GameObject foundPrefab = inventory.plantPrefabs.Find(prefab => prefab.name == inventory.selectedSeed.Name);
+						Debug.Log("Planting a " + foundPrefab);
 						inventory.removeSelectedItem();
 
 						// If a prefab is found place it in the world
@@ -90,18 +90,15 @@ public class RayCast : MonoBehaviour {
 
 		hoveredObject = obj;
 
-		Renderer[] renderers = hoveredObject.GetComponentsInChildren<Renderer>();
-		foreach(Renderer r in renderers) {
-			// Make an array with 1 more element and place the outline material there
-			Material[] mats = new Material[r.materials.Length + 1];
-
-			for(int i = 0; i < r.materials.Length; i++) {
-				mats[i] = r.materials[i];
-			}
-
-			mats[mats.Length - 1] = hoveredMaterial;
-			r.materials = mats;
+		Renderer renderer = hoveredObject.GetComponent<Renderer>();
+		// Make an array with 1 more element and place the outline material there
+		Material[] mats = new Material[renderer.materials.Length + 1];
+		for(int i = 0; i < renderer.materials.Length; i++) {
+			mats[i] = renderer.materials[i];
 		}
+
+		mats[mats.Length - 1] = hoveredMaterial;
+		renderer.materials = mats;
 	} 
 
 	void clearHover() {
@@ -110,15 +107,13 @@ public class RayCast : MonoBehaviour {
 		}
 
 		// Remove the outline material
-		Renderer[] renderers = hoveredObject.GetComponentsInChildren<Renderer>();
-		foreach(Renderer r in renderers) {
-			Material[] mats = new Material[r.materials.Length - 1];
-			for(int i = 0; i < mats.Length; i++) {
-				mats[i] = r.materials[i];
-			}
-			r.materials = mats;
-
+		Renderer renderer = hoveredObject.GetComponent<Renderer>();
+		Material[] mats = new Material[renderer.materials.Length - 1];
+		for(int i = 0; i < mats.Length; i++) {
+			mats[i] = renderer.materials[i];
 		}
+		renderer.materials = mats;
+
 		hoveredObject = null;
 	}
 }

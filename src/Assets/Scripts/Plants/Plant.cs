@@ -5,6 +5,7 @@ using System.Collections;
 public class Plant : MonoBehaviour {
 	PlayerHealth playerHealth;
 	ThornRoot thornRoot;
+	SweetLeaf sweetLeaf;
 
 	public int ID { get; set; }
 	public string Name { get; set; }
@@ -27,6 +28,7 @@ public class Plant : MonoBehaviour {
 	void Start() {
 		playerHealth = GameObject.Find("FirstPersonCharacter").GetComponent<PlayerHealth>();
 		thornRoot = gameObject.GetComponent<ThornRoot>();
+		sweetLeaf = gameObject.GetComponent<SweetLeaf>();
 	}
 
 	public void grow() {
@@ -36,6 +38,9 @@ public class Plant : MonoBehaviour {
 		if(this.LeftToGrow <= 0) {
 			if(thornRoot) {
 				thornRoot.Ripen();
+			}
+			if(sweetLeaf) {
+				sweetLeaf.Ripen();
 			}
 			gameObject.SetActive(false);
 		}
