@@ -8,8 +8,8 @@ public class Fruit : MonoBehaviour {
 		playerHealth = GameObject.Find("FirstPersonCharacter").GetComponent<PlayerHealth>();
 	}
 
-	public void eat() {
-		playerHealth.restoreHealth(1);
+	public void Eat() {
+		playerHealth.heal(1);
 		gameObject.SetActive(false);
 	}
 }

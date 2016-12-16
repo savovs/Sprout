@@ -27,9 +27,15 @@ public class PlayerHealth : MonoBehaviour {
 		}
 	}
 
-	public void restoreHealth(int amount) {
+	public void heal(int amount) {
+		// Don't let health become more than maxHealth
 		if (currentHealth < maxHealth) {
-			currentHealth += amount;
+			if (currentHealth + amount >= maxHealth) {
+				currentHealth = maxHealth;
+			} else {
+				currentHealth += amount;
+			}
+			
 			healthText.text = currentHealth.ToString();
 		}
 	}

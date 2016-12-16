@@ -8,9 +8,12 @@ public class RayCast : MonoBehaviour {
 	public Camera fpCamera;
 	public Material hoveredMaterial;
 
-	PlayerHealth playerHealth;
+	public GameObject testPrefab;
+
+	Inventory inventory;
+
 	void Awake() {
-		playerHealth = GetComponent<PlayerHealth>();
+		inventory = gameObject.GetComponent<Inventory>();
 	}
 
 	void Update () {
@@ -19,30 +22,58 @@ public class RayCast : MonoBehaviour {
 		Vector3 rayOrigin = fpCamera.ViewportToWorldPoint(new Vector3(0.5f, 0.5f, 0));
 		RaycastHit hit;
 
-		if (Physics.Raycast(rayOrigin, fpCamera.transform.forward, out hit, selectRange)) {
+		if(Physics.Raycast(rayOrigin, fpCamera.transform.forward, out hit, selectRange)) {
 			Selectable selectable = hit.collider.GetComponent<Selectable>();
 			Fruit fruit = hit.collider.GetComponent<Fruit>();
 			Plant plant = hit.collider.GetComponent<Plant>();
+			Seed seed = hit.collider.GetComponent<Seed>();
 
-			if (selectable) {
+			if(selectable) {
 				// Add outline material on hover
 				hoverObject(selectable.gameObject);
 			}
 
-			if (Input.GetMouseButtonDown(0)) {
-				// If there is a selectable in the traced object, damage it
-				if (selectable && plant) {
+			if(Input.GetMouseButtonDown(0)) {
+				if(selectable && plant) {
 					plant.grow();
 				}
 
 				// Add force to wiggle it a bit
-				if (hit.rigidbody) {
+				if(hit.rigidbody) {
 					hit.rigidbody.AddForce(-hit.normal * hitForce);
 				}
 
-				
-				if (fruit) {
-					fruit.eat();
+
+				if(fruit) {
+					fruit.Eat();
+				}
+
+				if(seed) {
+					seed.Collect();
+				}
+			}
+
+			Terrain terrain = hit.collider.GetComponent<Terrain>();
+			if (terrain) {
+				clearHover();
+				if(Input.GetMouseButtonDown(0)) {
+					// Get the inventory and if there's a selected seed, plant it
+					inventory = gameObject.GetComponent<Inventory>();
+
+					if(inventory.hasSelectedSeed) {
+						GameObject foundPrefab = inventory.plantPrefabs.Find(item => item.name == inventory.selectedSeed.Name);
+						Debug.Log(foundPrefab);
+						inventory.removeSelectedItem();
+
+						// If a prefab is found place it in the world
+						if (foundPrefab) {
+							GameObject placedObject = Instantiate(
+								foundPrefab,
+								hit.point, // Position to be placed at
+								Quaternion.Euler(0, 0, 0) // Rotation
+							) as GameObject;
+						}
+					}
 				}
 			}
 		} else {
